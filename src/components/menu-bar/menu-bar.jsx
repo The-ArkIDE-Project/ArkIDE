@@ -477,7 +477,7 @@ class MenuBar extends React.Component {
             >
                 <div className={styles.mainMenu}>
                     <div className={styles.fileGroup}>
-                        {this.props.logo ? (
+                        {this.props.onClickLogo ? (
                             <div className={classNames(styles.menuBarItem)}>
                                 <img
                                     alt="Scratch"
@@ -509,9 +509,7 @@ class MenuBar extends React.Component {
                             </div>
                             <LanguageSelector label={this.props.intl.formatMessage(ariaMessages.language)} />
                         </div>)}
-
                         {/* tw: theme toggler */}
-
                         {this.props.onClickTheme && (
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable)}
@@ -525,7 +523,6 @@ class MenuBar extends React.Component {
                                 />
                             </div>
                         )}
-
                         {/* tw: display compile errors */}
                         {this.props.compileErrors.length > 0 && <div>
                             <div
@@ -551,14 +548,14 @@ class MenuBar extends React.Component {
                                     onRequestClose={this.props.onRequestCloseErrors}
                                 >
                                     <MenuSection>
-                                        <MenuItemLink href="https://discord.gg/aPRchS3Zdp">
+                                        <MenuItemLink href="https://discord.gg/NZ9MBMYTZh">
                                             <FormattedMessage
                                                 defaultMessage="Some scripts could not be compiled."
                                                 description="Link in error menu"
                                                 id="tw.menuBar.reportError1"
                                             />
                                         </MenuItemLink>
-                                        <MenuItemLink href="https://discord.gg/aPRchS3Zdp">
+                                        <MenuItemLink href="https://discord.gg/NZ9MBMYTZh">
                                             <FormattedMessage
                                                 defaultMessage="This is a bug. Please report it."
                                                 description="Link in error menu"
@@ -950,7 +947,7 @@ class MenuBar extends React.Component {
                     <div className={styles.menuBarItem}>
                         <a
                             className={styles.feedbackLink}
-                            href="https://arkide.site"
+                            href="https://penguinmod.com"
                             rel="noopener noreferrer"
                             target="_blank"
                         >

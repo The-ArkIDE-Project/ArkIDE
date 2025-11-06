@@ -71,9 +71,9 @@ class Interface extends React.Component {
     }
     handleUpdateProjectTitle(title, isDefault) {
         if (isDefault || !title) {
-            document.title = `ArkIDE - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
+            document.title = `PenguinMod - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
         } else {
-            document.title = `${title} - ArkIDE`;
+            document.title = `${title} - PenguinMod`;
         }
     }
     render() {

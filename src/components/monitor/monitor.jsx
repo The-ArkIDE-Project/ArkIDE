@@ -14,12 +14,12 @@ import ListMonitor from '../../containers/list-monitor.jsx';
 import styles from './monitor.css';
 
 const categories = {
-    data: '#811aff',
+    data: '#FF8C1A',
     sensing: '#5CB1D6',
     sound: '#CF63CF',
     looks: '#9966FF',
     motion: '#4C97FF',
-    list: '#811aff',
+    list: '#FC662C',
     control: '#FFAB19',
     extension: '#0FBD8C'
 };

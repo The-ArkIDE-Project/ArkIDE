@@ -55,9 +55,9 @@ if (locale !== 'en') {
     }
 }
 
-document.title = `${settingsTranslations.title} - ArkIDE`;
+document.title = `${settingsTranslations.title} - PenguinMod`;
 
-const theme = 'dark';
+const theme = getInitialDarkMode() ? 'dark' : 'light';
 document.body.setAttribute('theme', theme);
 
 let _throttleTimeout;
@@ -1053,7 +1053,7 @@ class AddonSettingsComponent extends React.Component {
                             />
                         </div>
                         <a
-                            href="https://discord.gg/aPRchS3Zdp"
+                            href="https://discord.gg/NZ9MBMYTZh"
                             target="_blank"
                             rel="noreferrer"
                             className={styles.feedbackButtonOuter}

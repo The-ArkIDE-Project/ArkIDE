@@ -44,7 +44,7 @@ const fetchProjectToken = projectId => {
     if (hashParams.has('token')) {
         return Promise.resolve(hashParams.get('token'));
     }
-    return fetch(`https://arkideapi.arc360hub.com/api/v1/projects/getproject?projectID=${projectId}&requestType=metadata`)
+    return fetch(`https://projects.penguinmod.com/api/v1/projects/getproject?projectID=${projectId}&requestType=metadata`)
         .then(r => {
             if (!r.ok) return null;
             return r.json();
@@ -153,7 +153,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                     storage.setProjectToken(projectId);
                     assetPromise = storage.load(storage.AssetType.Project, projectId, storage.DataFormat.JSON);
                 } else {
-                    projectUrl = `https://arkideapi.arc360hub.com/api/v1/projects/getprojectwrapper?safe=true&projectId=${projectId}`;
+                    projectUrl = `https://projects.penguinmod.com/api/v1/projects/getprojectwrapper?safe=true&projectId=${projectId}`;
                     assetPromise = progressMonitor.fetchWithProgress(projectUrl)
                         .then(async r => {
                             if (this.props.vm.runtime.renderer?.setPrivateSkinAccess)
@@ -169,6 +169,10 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                             let zip = new JSZip();
                             zip.file("project.json", JSON.stringify(json));
                             
+                            if (typeof project.assets !== 'object') {
+                                alert('No assets were returned. This error is temporary and should not be reported.');
+                                throw new TypeError('Invalid type given inside the assets list');
+                            }
                             for (const asset of project.assets) {
                                 zip.file(asset.id, new Uint8Array(asset.buffer.data).buffer);
                             }
@@ -218,6 +222,10 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                             let zip = new JSZip();
                             zip.file("project.json", JSON.stringify(json));
                             
+                            if (typeof project.assets !== 'object') {
+                                alert('No assets were returned. This error is temporary and should not be reported.');
+                                throw new TypeError('Invalid type given inside the assets list');
+                            }
                             for (const asset of project.assets) {
                                 zip.file(asset.id, new Uint8Array(asset.buffer.data).buffer);
                             }

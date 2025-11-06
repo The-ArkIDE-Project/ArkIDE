@@ -97,7 +97,7 @@ class TargetPane extends React.Component {
         document.body.appendChild(saveLink);
 
         this.props.vm.exportSprite(id).then(content => {
-            downloadBlob(`${spriteName}.ais`, content);
+            downloadBlob(`${spriteName}.pms`, content);
         });
     }
     handleSelectSprite (id) {

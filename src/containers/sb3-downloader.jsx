@@ -16,7 +16,7 @@ const getProjectTitleFromFilename = fileInputFilename => {
     if (!fileInputFilename) return '';
     // only parse title with valid scratch project extensions
     // (.sb, .sb2, .sb3, and .pm)
-    const matches = fileInputFilename.match(/^(.*)(\.sb[23]?|\.ark|\.arkide)$/);
+    const matches = fileInputFilename.match(/^(.*)(\.sb[23]?|\.pm|\.pmp)$/);
     if (!matches) return '';
     return matches[1].substring(0, 100); // truncate project title to max 100 chars
 };
@@ -117,7 +117,7 @@ class SB3Downloader extends React.Component {
             const handle = await FileSystemAPI.showDirectoryPicker("pm-project-folder", "documents");
 
             this.startedSaving();
-            const jsZip = this.props.saveProjectZip();
+            const jsZip = this.props.saveProjectZip(true);
             this.extractJSZipToHandle(jsZip, handle);
             this.finishedSaving();
 
@@ -307,7 +307,7 @@ const getProjectFilename = (curTitle, defaultTitle) => {
     if (!filenameTitle || filenameTitle.length === 0) {
         filenameTitle = defaultTitle;
     }
-    return `${filenameTitle.substring(0, 100)}.arkide`;
+    return `${filenameTitle.substring(0, 100)}.pmp`;
 };
 
 SB3Downloader.propTypes = {

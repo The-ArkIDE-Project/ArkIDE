@@ -186,10 +186,10 @@ class Backpack extends React.Component {
 
         let recommendedName = item.name;
         if (item.type === 'sprite') {
-            recommendedName += '.ais';
+            recommendedName += '.pms';
         }
         if (item.type === 'script') {
-            recommendedName += '.aib';
+            recommendedName += '.pmb';
         }
 
         downloadBlob(recommendedName, blob);

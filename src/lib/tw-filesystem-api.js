@@ -8,7 +8,7 @@ const showSaveFilePicker = fileName => window.showSaveFilePicker({
     ...(isMobile() ? {} : {
         types: [
             {
-                description: 'ArkIDE Project',
+                description: 'PenguinMod Project',
                 accept: {
                     'application/x.scratch.sb3': '.pmp'
                 }
@@ -26,13 +26,13 @@ const showOpenFilePicker = async () => {
                 {
                     description: 'Supported Files',
                     accept: {
-                        'application/x.scratch.sb3': ['.pmp', '.pm', '.sb3', '.sb2', '.sb', '.arkide']
+                        'application/x.scratch.sb3': ['.pmp', '.pm', '.sb3', '.sb2', '.sb']
                     }
                 },
                 {
-                    description: 'ArkIDE Project',
+                    description: 'PenguinMod Project',
                     accept: {
-                        'application/x.scratch.sb3': ['.pmp', '.pm', '.arkide']
+                        'application/x.scratch.sb3': ['.pmp', '.pm']
                     }
                 },
                 {

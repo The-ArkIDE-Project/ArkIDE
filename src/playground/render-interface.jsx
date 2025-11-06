@@ -84,7 +84,7 @@ const formatProjectTitle = _title => {
     return title.replace(emojiRegex, match => {
         const emojiName = match.replace(/:/gmi, '');
         return `<img
-            src="https://library.arkide.site/files/emojis/${emojiName}.png"
+            src="https://library.penguinmod.com/files/emojis/${emojiName}.png"
             alt=":${emojiName}:"
             title=":${emojiName}:"
             loading="lazy"
@@ -142,7 +142,7 @@ const Footer = () => (
             <div className={styles.footerText}>
                 <FormattedMessage
                     // eslint-disable-next-line max-len
-                    defaultMessage="PenguinMod, ArkIDE and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
+                    defaultMessage="PenguinMod and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
                     description="Disclaimer that PenguinMod and TurboWarp are not connected to Scratch"
                     id="tw.footer.disclaimer"
                 />
@@ -156,7 +156,7 @@ const Footer = () => (
                             id="tw.footer.credits"
                         />
                     </a>
-                    <a href="https://arkide.site/donate">
+                    <a href="https://penguinmod.com/donate">
                         <FormattedMessage
                             defaultMessage="Donate"
                             description="Donation link in footer"
@@ -165,13 +165,13 @@ const Footer = () => (
                     </a>
                 </div>
                 <div className={styles.footerSection}>
-                    <a href="https://studio.arkide.site/PenguinMod-Packager">
+                    <a href="https://studio.penguinmod.com/PenguinMod-Packager">
                         {/* Do not translate */}
-                        {'ArkIDE Packager'}
+                        {'PenguinMod Packager'}
                     </a>
-                    <a href="https://arkide.site/desktop">
+                    <a href="https://desktop.turbowarp.org/">
                         {/* Do not translate */}
-                        {'ArkIDE Desktop'}
+                        {'TurboWarp Desktop'}
                     </a>
                     <a href="https://docs.turbowarp.org/embedding">
                         <FormattedMessage
@@ -196,28 +196,28 @@ const Footer = () => (
                     </a>
                 </div>
                 <div className={styles.footerSection}>
-                    <a href="https://arkide.site/terms">
+                    <a href="https://penguinmod.com/terms">
                         <FormattedMessage
                             defaultMessage="Terms of Service"
                             description="Link to Terms of Service"
                             id="pm.terms"
                         />
                     </a>
-                    <a href="https://arkide.site/privacy">
+                    <a href="https://penguinmod.com/privacy">
                         <FormattedMessage
                             defaultMessage="Privacy Policy"
                             description="Link to privacy policy"
                             id="tw.privacy"
                         />
                     </a>
-                    <a href="https://github.com/arc360alt/ArkIDE-Home/issues">
+                    <a href="https://github.com/PenguinMod/PenguinMod-Home/issues">
                         <FormattedMessage
                             defaultMessage="Feedback & Bugs"
                             description="Link to feedback/bugs page"
                             id="tw.feedback"
                         />
                     </a>
-                    <a href="https://github.com/arc360alt">
+                    <a href="https://github.com/PenguinMod">
                         <FormattedMessage
                             defaultMessage="Source Code"
                             description="Link to source code"
@@ -274,14 +274,14 @@ class Interface extends React.Component {
     }
     handleUpdateProjectTitle (title, isDefault) {
         if (isDefault || !title) {
-            document.title = `ArkIDE - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
+            document.title = `PenguinMod - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
         } else {
-            document.title = `${title} - ArkIDE`;
+            document.title = `${title} - PenguinMod`;
         }
     }
     copyProjectLink (id) {
         if ('clipboard' in navigator && 'writeText' in navigator.clipboard) {
-            navigator.clipboard.writeText(`https://arkideapi.arc360hub.com/${id}`);
+            navigator.clipboard.writeText(`https://projects.penguinmod.com/${id}`);
         }
     }
     render () {
@@ -343,21 +343,21 @@ class Interface extends React.Component {
                     {isHomepage && projectId !== '0' && title && extraProjectInfo && extraProjectInfo.author && <div className={styles.projectDetails}>
                         <a
                             target="_blank"
-                            href={`https://arkide.site/profile?user=${extraProjectInfo.author}`}
+                            href={`https://penguinmod.com/profile?user=${extraProjectInfo.author}`}
                             rel="noreferrer"
                         >
                             <img
                                 className={styles.projectAuthorImage}
                                 title={extraProjectInfo.author}
                                 alt={extraProjectInfo.author}
-                                src={`http://arkideapi.arc360hub.com/api/v1/users/getpfp?username=${extraProjectInfo.author}`}
+                                src={`https://projects.penguinmod.com/api/v1/users/getpfp?username=${extraProjectInfo.author}`}
                             />
                         </a>
                         <div className={styles.projectMetadata}>
                             <h2 dangerouslySetInnerHTML={{__html: formatProjectTitle(title)}} />
                             <p>by <a
                                 target="_blank"
-                                href={`https://arkide.site/profile?user=${extraProjectInfo.author}`}
+                                href={`https://penguinmod.com/profile?user=${extraProjectInfo.author}`}
                                 rel="noreferrer"
                             >{extraProjectInfo.author}</a></p>
                         </div>
@@ -389,21 +389,21 @@ class Interface extends React.Component {
                                         <a
                                             style={{height: '32px'}}
                                             target="_blank"
-                                            href={`https://arkide.site/profile?user=${remixedProjectInfo.author}`}
+                                            href={`https://penguinmod.com/profile?user=${remixedProjectInfo.author}`}
                                             rel="noreferrer"
                                         >
                                             <img
                                                 className={styles.remixAuthorImage}
                                                 title={remixedProjectInfo.author}
                                                 alt={remixedProjectInfo.author}
-                                                src={`https://arkideapi.arc360hub.com/api/v1/users/getpfp?username=${remixedProjectInfo.author}`}
+                                                src={`https://projects.penguinmod.com/api/v1/users/getpfp?username=${remixedProjectInfo.author}`}
                                             />
                                         </a>
                                         <p>
                                             Thanks to <b>
                                                 <a
                                                     target="_blank"
-                                                    href={`https://arkide.site/profile?user=${remixedProjectInfo.author}`}
+                                                    href={`https://penguinmod.com/profile?user=${remixedProjectInfo.author}`}
                                                     rel="noreferrer"
                                                 >
                                                     {remixedProjectInfo.author}
@@ -459,7 +459,7 @@ class Interface extends React.Component {
                                         <a
                                             target="_blank"
                                             rel="noreferrer"
-                                            href={`https://arkide.site/report?type=project&id=${projectId}`}
+                                            href={`https://penguinmod.com/report?type=project&id=${projectId}`}
                                             className={styles.reportLink}
                                         >
                                             <img
@@ -476,7 +476,7 @@ class Interface extends React.Component {
                             </div>
                             <a
                                 target="_blank"
-                                href="https://arkide.site/search?q=newest:"
+                                href="https://penguinmod.com/search?q=newest:"
                                 rel="noreferrer"
                             >
                                 See more projects

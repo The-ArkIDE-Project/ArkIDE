@@ -1,1 +1,1 @@
-export const APP_NAME = 'ArkIDE';
+export const APP_NAME = 'PenguinMod';
