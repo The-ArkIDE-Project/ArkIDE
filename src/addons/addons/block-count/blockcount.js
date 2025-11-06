@@ -1,87 +1,60 @@
 export default async function ({ addon, console, msg }) {
-  const Blockly = await addon.tab.traps.getBlockly();
   const vm = addon.tab.traps.vm;
-
-  let counterElement;
 
   const getBlockCount = () => {
     let blockCount = 0;
-    const targetBlocks = vm.runtime.targets.filter(v => v.isOriginal).map((target) => {
-      return [
-        target.id,
-        Object.values(target.blocks._blocks)
-          .filter((b) => !b.shadow).length // shadow blocks should be filtered out
-      ];
+    let scriptCount = 0;
+    let sprites = new Set(vm.runtime.targets.map((i) => i.sprite.blocks._blocks));
+    sprites.forEach((sprite, i) => {
+      scriptCount += Object.values(sprite).filter((o) => !o.parent).length; // Filter blocks that don't have a parent (meaning it's the top of a stack)
+      blockCount += Object.values(sprite).filter((o) => !o.shadow).length; // shadow blocks should be filtered out
     });
-
-    // project block count
-    for (const info of targetBlocks) blockCount += info[1];
-    return blockCount;
+    return {
+      blockCount,
+      scriptCount,
+      spriteCount: sprites.size - 1, // Backdrop counts as a target so we can subtract it
+    };
   };
 
-  const updateText = () => {
-    const count = getBlockCount();
-    counterElement.innerText = count + (count === 1 ? " block" : " blocks");
-  };
-
-  const addCounter = () => {
-    let shouldReApply = false;
-    ReduxStore.subscribe(() => {
-      if (!counterElement || shouldReApply) {
-        // init counter
-        const topBar = document.querySelector("div[class^='menu-bar_main-menu']");
-        if (!topBar) return;
-
-        if (shouldReApply) {
-          queueMicrotask(() => {
-            topBar.appendChild(counterElement);
-          });
-          return;
+  const addLiveBlockCount = async () => {
+    if (vm.editingTarget) {
+      let handler = null;
+      while (true) {
+        const topBar = await addon.tab.waitForElement("[class^='menu-bar_main-menu']", {
+          markAsSeen: true,
+          reduxEvents: [
+            "scratch-gui/mode/SET_PLAYER",
+            "fontsLoaded/SET_FONTS_LOADED",
+            "scratch-gui/locales/SELECT_LOCALE",
+          ],
+          reduxCondition: (state) => !state.scratchGui.mode.isPlayerOnly,
+        });
+        let display = topBar.appendChild(document.createElement("span"));
+        addon.tab.displayNoneWhileDisabled(display);
+        display.style.order = 1;
+        display.style.padding = "9px";
+        display.innerText = msg("blocks", { num: getBlockCount().blockCount });
+        let debounce; // debouncing values because of the way 'PROJECT_CHANGED' works
+        if (handler) {
+          vm.off("PROJECT_CHANGED", handler);
+          vm.runtime.off("PROJECT_LOADED", handler);
         }
-
-        counterElement = topBar.appendChild(document.createElement("span"));
-        counterElement.style.order = 1;
-        counterElement.style.padding = "9px";
-        counterElement.innerText = "";
-        updateText();
+        handler = async () => {
+          clearTimeout(debounce);
+          debounce = setTimeout(async () => {
+            display.innerText = msg("blocks", { num: getBlockCount().blockCount });
+          }, 1000);
+        };
+        vm.on("PROJECT_CHANGED", handler);
+        vm.runtime.on("PROJECT_LOADED", handler);
+      }
+    } else {
+      let timeout = setTimeout(function () {
         addLiveBlockCount();
-      } else {
-        // hide display if not in editor
-        const state = ReduxStore.getState().scratchGui;
-        if (state.mode.isPlayerOnly) {
-          // GUI will remove the counter automatically, add it back.
-          shouldReApply = true;
-        }
-      }
-    });
-  }
-
-  const addLiveBlockCount = () => {
-    let lastWorkspaceID;
-    let lastUpdateTime = 0;
-    vm.on("workspaceUpdate", () => queueMicrotask(() => {
-      updateText();
-      const workspace = Blockly.mainWorkspace;
-      const events = Blockly.Events;
-
-      const blocklyHandler = (event) => {
-        const now = Date.now();
-        if (
-          counterElement &&
-          now > lastUpdateTime + 150 && // dont update the count multiple times in a second
-          (event.type === events.DELETE || event.type === events.CREATE)
-        ) {
-          lastUpdateTime = now;
-          setTimeout(updateText, 200);
-        }
-      };
-
-      if (lastWorkspaceID !== workspace.id) {
-        workspace.addChangeListener(blocklyHandler);
-        lastWorkspaceID = workspace.id;
-      }
-    }));
+        clearTimeout(timeout);
+      }, 1000);
+    }
   };
 
-  addCounter();
+  addLiveBlockCount();
 }

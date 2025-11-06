@@ -38,10 +38,6 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
         label = `${spriteName}: ${label}`;
     }
 
-    if (value === null) {
-        value = 'null';
-    }
-
     // If value is a number, round it to six decimal places
     if (typeof value === 'number') {
         value = Number(value.toFixed(6));
@@ -60,7 +56,7 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
             if (typeof item === 'boolean') {
                 value[i] = item.toString();
             }
-            if (typeof item === 'object' && item !== null) {
+            if (typeof item === 'object') {
                 // check if this is a pure object or custom display
                 if (typeof (item.toListItem || value.toMonitorContent || item.toReporterContent) === 'function') {
                     value[i].isHTML = true;
@@ -72,7 +68,7 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
     }
 
     let isHTML = false;
-    if (typeof value === 'object' && value !== null) {
+    if (typeof value === 'object') {
         // check if this is a pure object or custom display
         if (typeof (value.toMonitorContent || value.toReporterContent) === 'function') {
             value = value.toMonitorContent

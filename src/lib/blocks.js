@@ -66,7 +66,7 @@ export default function (vm) {
                     name: 'OBJECT'
                 }
             ],
-            output: null,
+            output: true,
             colour: ScratchBlocks.Colours.sensing.primary,
             colourSecondary: ScratchBlocks.Colours.sensing.secondary,
             colourTertiary: ScratchBlocks.Colours.sensing.tertiary,

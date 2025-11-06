@@ -34,8 +34,6 @@ import ev3InsetIconURL from './ev3/ev3-small.svg';
 import ev3ConnectionIconURL from './ev3/ev3-hub-illustration.svg';
 import ev3ConnectionSmallIconURL from './ev3/ev3-small.svg';
 
-import faceSensingIconURL from './faceSensing/thumb.png';
-
 import wedo2IconURL from './wedo2/wedo.png'; // TODO: Rename file names to match variable/prop names?
 import wedo2InsetIconURL from './wedo2/wedo-small.svg';
 import wedo2ConnectionIconURL from './wedo2/wedo-illustration.svg';
@@ -62,8 +60,11 @@ import penguinmodLibraryExtensionIcon from './penguinmod/library.svg';
 import sharkpoolGalleryIcon from './penguinmod/sharkpool-library.svg';
 
 import ExtForgeIcon from './penguinmod/extforge.svg';
+import turboBuilderIcon from './penguinmod/turbobuilder.png';
+import turboBuilderDevIcon from './penguinmod/turbobuilder-dev.png';
 
 import filesExtensionIcon from './penguinmod/extensions/files.svg';
+import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
 import jgTailgatingExtensionIcon from './penguinmod/extensions/tailgating.png';
 import jgRuntimeExtensionIcon from './penguinmod/extensions/runtime.svg';
 import jgPrismExtensionIcon from './penguinmod/extensions/prism.png';
@@ -71,6 +72,7 @@ import jgDebuggingIcon from './penguinmod/extensions/debugging.svg';
 
 import jwProtoExtensionIcon from './penguinmod/extensions/proto.svg';
 import jwUniteExtensionIcon from './penguinmod/extensions/Unite.png';
+import jwXmlExtensionIcon from './penguinmod/extensions/xml.png';
 
 import jwStructsExtensionIcon from './penguinmod/extensions/ooplogo.png';
 
@@ -80,8 +82,7 @@ import jwNumExtensionThumb from './penguinmod/extensions/jwNum.svg';
 import jwColorExtensionThumb from './penguinmod/extensions/jwColor.svg';
 import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
 import jwLambdaExtensionThumb from './penguinmod/extensions/jwLambda.svg';
-import jwScopeExtensionThumb from './penguinmod/extensions/jwScope.svg';
-import jwXMLExtensionIcon from './penguinmod/extensions/jwXML.svg';
+
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
 
@@ -107,14 +108,17 @@ import pointerlockThumb from './penguinmod/extensions/pointerlock.png';
 import cursorThumb from './penguinmod/extensions/cursor.svg';
 
 // LilyMakesThings 🙏
+// import lmsMcUtilsIcon from './penguinmod/extensions/mcutils.png';
 import lilyTempVariablesExtensionIcon from './penguinmod/orgtw/TempVariables2.svg';
 
 // more icons so they arent just red when the extension color is not red
 import gsaTempVariablesExtensionIcon from './penguinmod/extensions/tempvariables.svg';
+import gsaColorUtilExtensionIcon from './penguinmod/extensions/colorutil.png';
 import jgIframeExtensionIcon from './penguinmod/extensions/iframe.png';
 import jgExtendedAudioExtensionIcon from './penguinmod/extensions/extendedaudio.png';
 import jgScratchAuthExtensionIcon from './penguinmod/extensions/scratchauth2.svg';
 import jgPermissionExtensionIcon from './penguinmod/extensions/permissions.png';
+import silvxrcatOddMessagesExtensionIcon from './penguinmod/extensions/oddmessages.svg';
 import jgCloneManagerExtensionIcon from './penguinmod/extensions/clonemanager.png';
 import pmInlineBlocksExtensionIcon from './penguinmod/extensions/inlineblocks.png';
 import jgPackagerApplicationsExtensionIcon from './penguinmod/extensions/packagedApplications.png';
@@ -151,7 +155,6 @@ import sharkpoolLooksExpandedIcon from './penguinmod/extensions/looksExpanded.sv
 import spTurboSkinsIcon from './penguinmod/extensions/turboSkins.svg';
 import spFontManagerIcon from './penguinmod/extensions/fontManager.svg';
 import spSoundWaveIcon from './penguinmod/extensions/soundWaves.svg';
-import spTempVarsIcon from './penguinmod/extensions/sp_tempVars.svg';
 
 // events
 import jgStorageExtensionIcon from './penguinmod/extensions/storage.png';
@@ -169,20 +172,13 @@ import pmControlsExpansionExtensionIcon from './penguinmod/extensions/controls_e
 import pmSensingExpansionExtensionIcon from './penguinmod/extensions/sensing_expanded.png';
 import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators_expanded.png';
 
-/*
-    Deprecated Thumbnails, uncomment if useful again
-import turboBuilderIcon from './penguinmod/turbobuilder.png';
-import turboBuilderDevIcon from './penguinmod/turbobuilder-dev.png';
-
-import silvxrcatOddMessagesExtensionIcon from './penguinmod/extensions/oddmessages.svg';
-import gsaColorUtilExtensionIcon from './penguinmod/extensions/colorutil.png';
-import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
-*/
-
-// default icon if one is not made yet...
+// jg: default icon if you are too lazy to make one and you want me to make one instead lololololololol
+// gsa: ololololololo
 import defaultExtensionIcon from './penguinmod/extensions/placeholder.png';
 
+
 const urlParams = new URLSearchParams(location.search);
+
 const IsLocal = String(window.location.href).startsWith(`http://localhost:`);
 const IsLiveTests = urlParams.has('livetests');
 
@@ -260,14 +256,6 @@ const menuItems = [
                 id="gui.extension.videosensing.description"
             />
         ),
-        featured: true
-    },
-    {
-        name: 'Face Sensing',
-        extensionId: 'https://extensions.turbowarp.org/lab/face-sensing.js',
-        iconURL: faceSensingIconURL,
-        tags: ['scratch'],
-        description: 'Sense faces with the camera.',
         featured: true
     },
     {
@@ -352,12 +340,22 @@ const menuItems = [
         featured: true
     },
     {
+        name: 'ArkIDE Aditions',
+        extensionId: 'https://extensions.arkide.site/extensions/Ark/arkide-additons.js',
+        iconURL: 'https://extensions.arkide.site/images/Ark/banner.svg',
+        tags: ['penguinmod'],
+        description: 'A simple extension that adds some cool new blocks for ArkIDE.',
+        extDeveloper: 'Ark',
+        featured: true
+    },
+    {
         name: 'Files',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Files-Expanded.js',
-        extDeveloper: 'SharkPool',
+        extensionId: 'twFiles',
+        twDeveloper: 'GarboMuffin',
         iconURL: filesExtensionIcon,
+        insetIconURL: turbowarpIcon,
         tags: ['turbowarp', 'datamgmt'],
-        description: 'Blocks for reading, editing, & creating files & folders.',
+        description: 'Blocks for reading and creating files.',
         featured: true
     },
     {
@@ -406,15 +404,6 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'Motion Expansion',
-        extensionId: 'pmMotionExpansion',
-        iconURL: pmMotionExpansionExtensionIcon,
-        tags: ['penguinmod', 'categoryexpansion'],
-        description: 'More small motion blocks for movement or collision.',
-        featured: true,
-        credits: 'Some blocks from NexusKitten'
-    },
-    {
         name: 'Looks Expanded',
         extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Looks-Expanded.js',
         iconURL: sharkpoolLooksExpandedIcon,
@@ -422,6 +411,15 @@ const menuItems = [
         description: 'Expansion of the Looks Category.',
         extDeveloper: 'SharkPool, CST1229',
         featured: true
+    },
+    {
+        name: 'Motion Expansion',
+        extensionId: 'pmMotionExpansion',
+        iconURL: pmMotionExpansionExtensionIcon,
+        tags: ['penguinmod', 'categoryexpansion'],
+        description: 'More small motion blocks for movement or collision.',
+        featured: true,
+        credits: 'Some blocks from NexusKitten'
     },
     {
         name: 'Events Expansion',
@@ -474,6 +472,23 @@ const menuItems = [
         tags: ['penguinmod', 'categoryexpansion'],
         description: 'Better Comments with Customization and Markdown support',
         extDeveloper: 'SharkPool',
+        featured: true
+    },
+    {
+        name: 'JSON',
+        extensionId: 'jgJSON',
+        iconURL: jgJSONExtensionIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Blocks for handling JSON objects and Arrays.',
+        featured: true
+    },
+    {
+        name: 'Swift JSON',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/JSON-Array.js',
+        iconURL: spJSONExtensionIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        extDeveloper: 'SharkPool',
+        description: 'POTENTIALLY DANGEROUS, but faster extension for handling JSON objects and arrays. Recommended if you are heavily using JSON several times in a project.',
         featured: true
     },
     {
@@ -584,14 +599,6 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'SharkPool\'s Temporary Variables',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Temporary-Variables.js',
-        iconURL: spTempVarsIcon,
-        tags: ['penguinmod', 'datamgmt'],
-        description: 'Create temporary runtime, threaded, sprite & scoped variables.',
-        featured: true
-    },
-    {
         name: 'TurboWarp Temporary Variables',
         extensionId: 'lmsTempVars2',
         iconURL: lilyTempVariablesExtensionIcon,
@@ -599,15 +606,6 @@ const menuItems = [
         description: 'Create disposable runtime or thread variables.',
         insetIconURL: turbowarpIcon,
         credits: 'LilyMakesThings',
-        featured: true
-    },
-    {
-        name: 'Swift JSON',
-        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/JSON-Array.js',
-        iconURL: spJSONExtensionIcon,
-        tags: ['penguinmod', 'datamgmt'],
-        extDeveloper: 'SharkPool',
-        description: 'FAST Extension for handling JSON objects and arrays efficiently. Recommended if you are heavily using JSON several times in a project.',
         featured: true
     },
     {
@@ -685,6 +683,15 @@ const menuItems = [
         extDeveloper: 'pinksheep2917',
         featured: true
     },
+    /*DEPRECATED {
+        name: 'Extra Mathematics',
+        extensionId: 'https://extensions.penguinmod.com/extensions/jwklong/mathematics.js',
+        iconURL: 'https://extensions.penguinmod.com/images/jwklong/mathematics.avif',
+        tags: ['penguinmod', 'categoryexpansion', 'math'],
+        description: 'Complicated maths extension for nerds.',
+        extDeveloper: 'jwklong',
+        featured: false
+    },*/
     {
         name: 'Random Utilities',
         extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/random_utils.js',
@@ -711,6 +718,15 @@ const menuItems = [
         description: 'Blocks for specific use-cases or major convenience.',
         featured: true
     },
+    /*DEPRECATED{
+        name: 'Odd Messages',
+        extensionId: 'oddMessage',
+        tags: ['penguinmod'],
+        iconURL: silvxrcatOddMessagesExtensionIcon,
+        description: 'For logging and variable utilization.',
+        featured: true,
+        extDeveloper: 'silvxrcat'
+    },*/
     {
         name: 'HTML iframe Elements',
         extensionId: 'jgIframe',
@@ -727,6 +743,23 @@ const menuItems = [
         tags: ['penguinmod'],
         description: 'Allow the user to choose a color using the built-in color picker, so you don\'t need to make your own.',
         extDeveloper: 'TheShovel',
+        featured: true
+    },
+    {
+        name: 'Color Utility Blocks',
+        extensionId: 'colors',
+        iconURL: gsaColorUtilExtensionIcon,
+        tags: ['penguinmod'],
+        description: 'Converters for Hex, RGB, HSV and Decimal colors and other color related things.',
+        featured: true
+    },
+    {
+        name: 'All Menus',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Lily/AllMenus.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Lily/AllMenus.svg',
+        tags: ['penguinmod'],
+        description: 'Every dropdown menu for each block, in one extension.',
+        extDeveloper: 'LilyMakesThings',
         featured: true
     },
     {
@@ -864,24 +897,6 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'Objects',
-        extensionId: 'https://extensions.penguinmod.com/extensions/DogeisCut/dogeiscutObject.js',
-        iconURL: 'https://extensions.penguinmod.com/images/DogeisCut/dogeiscutObject.svg',
-        tags: ['penguinmod', 'datamgmt'],
-        description: 'Store data efficiently in multi-purpose objects.',
-        extDeveloper: 'DogeisCut',
-        featured: true
-    },
-    {
-        name: 'XML',
-        extensionId: 'jwXML',
-        iconURL: jwXMLExtensionIcon,
-        tags: ['penguinmod', 'datamgmt'],
-        description: 'Creating, parsing and modifying XML data.',
-        extDeveloper: 'jwklong',
-        featured: true
-    },
-    {
         name: 'Targets',
         extensionId: 'jwTargets',
         iconURL: jwTargetsExtensionThumb,
@@ -924,15 +939,6 @@ const menuItems = [
         iconURL: jwLambdaExtensionThumb,
         tags: ['penguinmod'],
         description: 'Create anonymous functions with arguments and execute them.',
-        extDeveloper: 'jwklong',
-        featured: true
-    },
-    {
-        name: 'Scope',
-        extensionId: 'jwScope',
-        iconURL: jwScopeExtensionThumb,
-        tags: ['penguinmod'],
-        description: 'Temporary variables based on the block stack. (extra blocks included if Array extension is added)',
         extDeveloper: 'jwklong',
         featured: true
     },
@@ -1100,12 +1106,12 @@ const menuItems = [
     {
         name: (
             <FormattedMessage
-                defaultMessage="PenguinMod Extra Extensions"
+                defaultMessage="ArkIDE Extra Extensions"
                 description="Name of library item to open the Extra Extensions gallery"
                 id="pm.extraLibraryExtensions.name"
             />
         ),
-        href: 'https://extensions.penguinmod.com/',
+        href: 'https://extensions.arkide.site/',
         extensionId: 'special_penguinmodExtensionLibrary',
         iconURL: penguinmodLibraryExtensionIcon,
         description: (
@@ -1164,71 +1170,7 @@ const menuItems = [
         tags: ['extcreate'],
         featured: true
     },
-    {
-        // not really an extension, but it's easiest to present it as one
-        name: (
-            <FormattedMessage
-                defaultMessage="Custom Extension"
-                description="Name of library item to load a custom extension from a remote source"
-                id="tw.customExtension.name"
-            />
-        ),
-        extensionId: '',
-        iconURL: customExtensionIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="Load custom extensions from URLs, files, or JavaScript source code."
-                description="Description of library item to load a custom extension from a custom source"
-                id="tw.customExtension.description"
-            />
-        ),
-        featured: true
-    }
-    /*DEPRECATED
-    {
-        name: 'JSON',
-        extensionId: 'jgJSON',
-        iconURL: jgJSONExtensionIcon,
-        tags: ['penguinmod', 'datamgmt'],
-        description: 'Blocks for handling JSON objects and Arrays.',
-        featured: true
-    },
-    {
-        name: 'Color Utility Blocks',
-        extensionId: 'colors',
-        iconURL: gsaColorUtilExtensionIcon,
-        tags: ['penguinmod'],
-        description: 'Converters for Hex, RGB, HSV and Decimal colors and other color related things.',
-        featured: true
-    },
-    {
-        name: 'Odd Messages',
-        extensionId: 'oddMessage',
-        tags: ['penguinmod'],
-        iconURL: silvxrcatOddMessagesExtensionIcon,
-        description: 'For logging and variable utilization.',
-        featured: true,
-        extDeveloper: 'silvxrcat'
-    },
-    {
-        name: 'Extra Mathematics',
-        extensionId: 'https://extensions.penguinmod.com/extensions/jwklong/mathematics.js',
-        iconURL: 'https://extensions.penguinmod.com/images/jwklong/mathematics.avif',
-        tags: ['penguinmod', 'categoryexpansion', 'math'],
-        description: 'Complicated maths extension for nerds.',
-        extDeveloper: 'jwklong',
-        featured: false
-    },
-    {
-        name: 'All Menus',
-        extensionId: 'https://extensions.penguinmod.com/extensions/Lily/AllMenus.js',
-        iconURL: 'https://extensions.penguinmod.com/images/Lily/AllMenus.svg',
-        tags: ['penguinmod'],
-        description: 'Every dropdown menu for each block, in one extension.',
-        extDeveloper: 'LilyMakesThings',
-        featured: true
-    },
-    {
+    /*{
         // not really an extension, but it's easiest to present it as one
         name: 'TurboBuilder',
         href: 'https://turbobuilder.vercel.app/',
@@ -1251,6 +1193,26 @@ const menuItems = [
         tags: ['extcreate'],
         featured: true
     },*/
+    {
+        // not really an extension, but it's easiest to present it as one
+        name: (
+            <FormattedMessage
+                defaultMessage="Custom Extension"
+                description="Name of library item to load a custom extension from a remote source"
+                id="tw.customExtension.name"
+            />
+        ),
+        extensionId: '',
+        iconURL: customExtensionIcon,
+        description: (
+            <FormattedMessage
+                defaultMessage="Load custom extensions from URLs, files, or JavaScript source code."
+                description="Description of library item to load a custom extension from a custom source"
+                id="tw.customExtension.description"
+            />
+        ),
+        featured: true
+    }
 ];
 
 /*
@@ -1407,7 +1369,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'fire in the hole',
             extensionId: 'https://extensions.penguinmod.com/extensions/JeremyGamer13/FireInTheHole.js',
-            iconURL: 'https://library.penguinmod.com/files/emojis/cluelesssmile.png',
+            iconURL: 'https://library.arkide.site/files/emojis/cluelesssmile.png',
             tags: ['penguinmod', 'joke'],
             internetConnectionRequired: true,
             description: 'april fools took too long man this joke is not funny anymore',
@@ -1419,6 +1381,15 @@ if (IsLocal || IsLiveTests) {
             iconURL: jwUniteExtensionIcon,
             tags: ['penguinmod'],
             description: 'Legacy extension that was eventually merged into the default toolbox.',
+            featured: true
+        },
+        {
+            name: 'XML',
+            extensionId: 'jwXml',
+            iconURL: jwXmlExtensionIcon,
+            tags: ['penguinmod', 'datamgmt'],
+            description: 'Enables the creation and getting of XML data. Not yet able to modify data.',
+            extDeveloper: 'jwklong',
             featured: true
         },
         {

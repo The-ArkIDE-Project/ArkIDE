@@ -140,10 +140,15 @@ const costumeUpload = function (fileData, fileType, vm, handleCostume, handleErr
         return;
     }
     case 'image/gif': {
+        let costumes = [];
         gifDecoder(fileData, (frameNumber, dataUrl, numFrames) => {
-            costumeUpload(dataUrl, 'image/png', vm, handleCostume, handleError);
+            costumeUpload(dataUrl, 'image/png', vm, costumes_ => {
+                costumes = costumes.concat(costumes_);
+                if (frameNumber === numFrames - 1) {
+                    handleCostume(costumes);
+                }
+            }, handleError);
         });
-
         return; // Abandon this load, do not try to load gif itself
     }
     default:
