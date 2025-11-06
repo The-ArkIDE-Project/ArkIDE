@@ -1,5 +1,20 @@
 scratch-gui modified for use in [TurboWarp](https://turbowarp.org/) then modified for use in [PenguinMod](https://studio.penguinmod.com) 😀
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/PenguinMod/penguinmod.github.io/)
+
+## ArkIDE To Do:
+- Add new blocks
+- Add new catigories to the UI
+- Make the homepage/editor UI better
+- Sync this repo with Penguinmods to add all of the new features they have added in the 2 months this repo has been out-of-date from it
+- Change back all of the chrismas changes after January 1st 2026.
+
+## GIthub Map:
+- Editor: https://github.com/arc360alt/arkide-new
+- Desktop: https://github.com/arc360alt/ArkIDE-Desktop
+- Home: https://github.com/arc360alt/ArkIDE-Home
+- Extension Gallery: https://github.com/arc360alt/ArkIDE-ExtensionGallery
+- API: Self hosted on a seperate server.
+
+
 ## Setup
 
 See https://docs.turbowarp.org/development/getting-started to setup the complete TurboWarp environment.
@@ -292,3 +307,4 @@ Here's what will happen in the project state machine:
 We provide [Scratch](https://scratch.mit.edu) free of charge, and want to keep it that way! Please consider making a [donation](https://secure.donationpay.org/scratchfoundation/) to support our continued engineering, design, community, and resource development efforts. Donations of any size are appreciated. Thank you!
 
 -->
+Try2

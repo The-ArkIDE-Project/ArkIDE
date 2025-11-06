@@ -37,7 +37,7 @@ const manifest = {
   "dynamicDisable": true,
   "enabledByDefault": false,
   "tags": [
-    "theme"
+    "new"
   ]
 };
 export default manifest;

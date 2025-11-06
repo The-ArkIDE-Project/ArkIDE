@@ -479,7 +479,7 @@ class SoundEditor extends React.Component {
             slider.value = params.value;
 
             const input = document.createElement("input");
-            input.style = "text-align: center;width: 40px;border: solid 1px gray;border-radius: 10px;font-size: x-small;";
+            input.style = "text-align: center;width: 40px;border: solid 1px gray;border-radius: 10px;";
             input.type = "number";
             input.min = params.min * scalar;
             input.max = params.max * scalar;
@@ -530,7 +530,7 @@ class SoundEditor extends React.Component {
             menu.append(pitchDiv, volumeDiv);
 
             const previewButton = document.createElement("button");
-            previewButton.style = "border-radius: 1000px;padding: 5px;width: 45px;height: 45px;border-style: none;background: #00c3ff;";
+            previewButton.style = "border-radius: 1000px;padding: 5px;width: 45px;height: 45px;border-style: none;background:rgb(76, 0, 255);";
             previewButton.innerHTML = `<img draggable="false" style="max-width: 100%;max-height: 100%" src="${playURI}">`;
             menu.append(previewButton);
 

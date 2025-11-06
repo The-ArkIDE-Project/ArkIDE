@@ -41,10 +41,11 @@ const messages = defineMessages({
 // For user-made libraries.
 const TRUSTED_LOADEXT_ORIGINS = [
     'https://studio.penguinmod.com', // for development
-    'https://extensions.penguinmod.com',
+    'https://extensions.arkide.site',
     'https://sharkpools-extensions.vercel.app',
     'https://raw.githubusercontent.com/SharkPool-SP/SharkPools-Extensions/main', // Some people cant connect to vercel
     'https://pen-group.github.io',
+    'https://extensions.arkide.site',
 ];
 
 class ExtensionLibrary extends React.PureComponent {
@@ -162,7 +163,7 @@ class ExtensionLibrary extends React.PureComponent {
             return;
         }
         if (extensionId === 'special_penguinmodExtensionLibrary') {
-            window.open('https://extensions.penguinmod.com/');
+            window.open('https://extensions.arkide.site/');
             return;
         }
         const url = (item.extensionURL ? item.extensionURL : extensionId);

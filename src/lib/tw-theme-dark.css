@@ -79,7 +79,7 @@
     color: var(--text-primary);
 }
 .blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-content {
-    color: hsla(0, 0%, 100%, .35) !important;
+    color: #666 !important;
 }
 .sa-blockly-menu-item-border {
     border-top-color: var(--ui-black-transparent) !important;

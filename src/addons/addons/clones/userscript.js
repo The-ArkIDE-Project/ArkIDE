@@ -67,10 +67,24 @@ export default async function ({ addon, console, msg }) {
     doCloneChecks(true);
   });
 
-  vm.runtime.on("targetWasCreated", (_, originalTarget) => {
-    if (originalTarget) doCloneChecks();
-  });
-  vm.runtime.on("targetWasRemoved", doCloneChecks);
+  const oldStep = vm.runtime._step;
+  vm.runtime._step = function (...args) {
+    const ret = oldStep.call(this, ...args);
+    doCloneChecks();
+    return ret;
+  };
+
+  /*
+  if (addon.self.enabledLate) {
+    // Clone count might be inaccurate if the user deleted sprites
+    // before enabling the addon
+    let count = 0;
+    for (let target of vm.runtime.targets) {
+      if (!target.isOriginal) ++count;
+    }
+    vm.runtime._cloneCounter = count;
+  }
+  */
 
   while (true) {
     await addon.tab.waitForElement('[class*="controls_controls-container"]', {
